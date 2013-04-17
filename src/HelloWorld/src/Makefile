@@ -1,25 +1,4 @@
 #PLATFORM DETECTION
-
-UNAME := $(shell uname)
-
-$(info ************  UNAME - $(UNAME)  ************)
-
-ifeq ($(UNAME), MINGW32_NT-5.1)
-$(info ************  TARGET WINDOWS 32bit  ************)
-BINDIR  :=  ..\..\..\bin\win32
-CC      :=  \mingw\bin\gcc
-LIBR    :=  ..\..\..\lib\ooch\build\*.o
-OBJDIR = ..\build
-else
-$(info ************  TARGET LINUX i386  ************)
-BINDIR  :=  ../../../bin/linux_i386
-CC      :=  /usr/bin/gcc
-LIBR    :=  ../../../lib/ooch/build/*.o
-OBJDIR = ../build
-endif
-
-EXENAME := HelloWorld
-
 SHELL = /bin/sh
 
 SRC := $(wildcard *.c)
@@ -27,14 +6,71 @@ OBJ := $(SRC:.c=.o)
 DEP := $(SRC:.c=.d)
 INC := $(SRC:.c=.h) 
 
-MAKE    :=  /usr/bin/make
-CP      :=  cp
-MV      :=  mv
-MKDIR   :=  mkdir
-
-LDFLAGS :=  -L$(LIBR)
+LDFLAGS :=  -L/usr/local/lib
 CCFLAGS :=  $(DEBUG) -Wall -W
 
+### Borrowed heavily from: http://stackoverflow.com/questions/714100/os-detecting-makefile
+$(info ************  OS                     - $(OS) )
+ifeq ($(OS),Windows_NT)
+    EXENAME := HelloWorld.exe
+
+    MAKE    :=  /bin/make.exe
+    CC      :=  /mingw/bin/gcc.exe
+    CP      :=  cp
+    MV      :=  mv
+    MKDIR   :=  mkdir -p
+
+    BINDIR  :=  ../../../bin/win32
+    CC      :=  /mingw/bin/gcc
+    LIBR    :=  ../../../lib/ooch/build/*.o
+    OBJDIR  :=  ../build
+	
+    $(info ************  PROCESSOR_ARCHITECTURE - $(PROCESSOR_ARCHITECTURE) )
+    CCFLAGS += -D WIN32
+    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+        CCFLAGS += -D AMD64
+    endif
+    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+        CCFLAGS += -D IA32
+    endif
+else
+    EXENAME := HelloWorld
+
+    MAKE    :=  /usr/bin/make
+    CC      :=  /usr/bin/gcc
+    CP      :=  cp
+    MV      :=  mv
+    MKDIR   :=  mkdir -p
+	
+    BINDIR  :=  ../../../bin/linux_i386
+    LIBR    :=  ../../../lib/ooch/build/*.o
+    OBJDIR  :=  ../build
+	
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        CCFLAGS += -D LINUX
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        CCFLAGS += -D OSX
+    endif
+    UNAME_P := $(shell uname -p)
+    ifeq ($(UNAME_P),x86_64)
+        CCFLAGS += -D AMD64
+    endif
+    ifneq ($(filter %86,$(UNAME_P)),)
+        CCFLAGS += -D IA32
+    endif
+    ifneq ($(filter arm%,$(UNAME_P)),)
+        CCFLAGS += -D ARM
+    endif
+endif
+
+SHELL = /bin/sh
+
+SRC := $(wildcard *.c)
+OBJ := $(SRC:.c=.o)
+DEP := $(SRC:.c=.d)
+INC := $(SRC:.c=.h) 
 
 #LIBS    :=  -lssl -ldl -lrt -lz -lc -lm -lcrypto
 
@@ -48,6 +84,11 @@ $(OBJPROG): | $(OBJDIR)
 
 $(OBJDIR):
 	$(MKDIR) -p $(OBJDIR) 
+	
+$(EXEPROG): | $(BINDIR)
+
+$(BINDIR):
+	$(MKDIR) $(BINDIR) 
 
 $(DEPPROG): $(SRC)
 	# 

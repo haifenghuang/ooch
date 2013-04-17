@@ -9,7 +9,7 @@ MAKE    :=  /usr/bin/make
 CC      :=  /usr/bin/gcc
 CP      :=  cp
 MV      :=  mv
-MKDIR   :=  mkdir
+MKDIR   :=  mkdir -p
 
 LDFLAGS :=  -L/usr/local/lib
 CCFLAGS :=  $(DEBUG) -Wall -W
@@ -21,12 +21,16 @@ OBJDIR = ../build
 OBJPROG = $(addprefix $(OBJDIR)/, $(OBJ))
 DEPPROG = $(addprefix $(OBJDIR)/, $(DEP))
 
-all: $(OBJPROG)
+.PHONY: directories
 
-$(OBJ): | $(OBJDIR)
-	$(MKDIR) -p $(OBJDIR) 
+all: directories $(DEPPROG) $(OBJPROG)
 
-$(OBJPROG) $(DEPPROG): $(SRC)
+directories: $(OBJDIR)
+
+$(OBJDIR):
+	$(MKDIR) $(OBJDIR) 
+
+$(DEPPROG): $(SRC)
 	# 
 	# ========= START $< TO $@ =========
 	$(CC) -M $(CPPFLAGS) $< > $@.$$$$;                      \
