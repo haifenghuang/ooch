@@ -51,6 +51,7 @@ else
         CCFLAGS += -D LINUX
     endif
     ifeq ($(UNAME_S),Darwin)
+        BINDIR  :=  ../../../bin/mac_i386
         CCFLAGS += -D OSX
     endif
     UNAME_P := $(shell uname -p)
