@@ -1,1 +1,5 @@
 2013-04-11 11:16 mst - Added this DEVELOPMENT.log file to repo
+
+
+2013-04-17 23:44 mst - Had to apt-get install ia32-libs to get Aptana adb program to run
+

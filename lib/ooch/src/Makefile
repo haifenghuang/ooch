@@ -5,16 +5,56 @@ OBJ := $(SRC:.c=.o)
 DEP := $(SRC:.c=.d)
 INC := $(SRC:.c=.h) 
 
-MAKE    :=  /usr/bin/make
-CC      :=  /usr/bin/gcc
-CP      :=  cp
-MV      :=  mv
-MKDIR   :=  mkdir -p
-
 LDFLAGS :=  -L/usr/local/lib
 CCFLAGS :=  $(DEBUG) -Wall -W
 
 OBJDIR = ../build
+
+
+### Borrowed heavily from: http://stackoverflow.com/questions/714100/os-detecting-makefile
+$(info ************  OS                     - $(OS) )
+ifeq ($(OS),Windows_NT)
+
+    MAKE    :=  /bin/make.exe
+    CC      :=  /mingw/bin/gcc.exe
+    CP      :=  cp
+    MV      :=  mv
+    MKDIR   :=  mkdir -p
+	
+    $(info ************  PROCESSOR_ARCHITECTURE - $(PROCESSOR_ARCHITECTURE) )
+    CCFLAGS += -D WIN32
+    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+        CCFLAGS += -D AMD64
+    endif
+    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+        CCFLAGS += -D IA32
+    endif
+else
+
+    MAKE    :=  /usr/bin/make
+    CC      :=  /usr/bin/gcc
+    CP      :=  cp
+    MV      :=  mv
+    MKDIR   :=  mkdir -p
+	
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        CCFLAGS += -D LINUX
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        CCFLAGS += -D OSX
+    endif
+    UNAME_P := $(shell uname -p)
+    ifeq ($(UNAME_P),x86_64)
+        CCFLAGS += -D AMD64
+    endif
+    ifneq ($(filter %86,$(UNAME_P)),)
+        CCFLAGS += -D IA32
+    endif
+    ifneq ($(filter arm%,$(UNAME_P)),)
+        CCFLAGS += -D ARM
+    endif
+endif
 
 #LIBS    :=  -lssl -ldl -lrt -lz -lc -lm -lcrypto
 
