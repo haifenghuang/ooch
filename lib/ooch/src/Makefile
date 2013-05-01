@@ -8,9 +8,6 @@ INC := $(SRC:.c=.h)
 LDFLAGS :=  -L/usr/local/lib
 CCFLAGS :=  $(DEBUG) -Wall -W
 
-OBJDIR = ../build
-
-
 ### Borrowed heavily from: http://stackoverflow.com/questions/714100/os-detecting-makefile
 $(info ************  OS                     - $(OS) )
 ifeq ($(OS),Windows_NT)
@@ -21,6 +18,8 @@ ifeq ($(OS),Windows_NT)
     MV      :=  mv
     MKDIR   :=  mkdir -p
 	
+    OBJDIR = ../build
+
     $(info ************  PROCESSOR_ARCHITECTURE - $(PROCESSOR_ARCHITECTURE) )
     CCFLAGS += -D WIN32
     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
@@ -36,10 +35,21 @@ else
     CP      :=  cp
     MV      :=  mv
     MKDIR   :=  mkdir -p
+
+    OBJDIR = ../build
 	
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
         CCFLAGS += -D LINUX
+### got from: http://www.linuxquestions.org/questions/programming-9/how-can-make-makefile-detect-64-bit-os-679513/
+        LBITS := $(shell getconf LONG_BIT)
+        ifeq ($(LBITS),64)
+           # do 64 bit stuff here, like set some CFLAGS
+           OBJDIR = ../build/linux_i386-64
+        else
+           # do 32 bit stuff here
+           OBJDIR = ../build/linux_i386
+        endif
     endif
     ifeq ($(UNAME_S),Darwin)
         CCFLAGS += -D OSX

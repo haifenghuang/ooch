@@ -42,13 +42,26 @@ else
     MV      :=  mv
     MKDIR   :=  mkdir -p
 	
-    BINDIR  :=  ../../../bin/linux_i386
+    BINDIR  :=  ../../../bin
     LIBR    :=  ../../../lib/ooch/build/*.o
     OBJDIR  :=  ../build
 	
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
         CCFLAGS += -D LINUX
+### got from: http://www.linuxquestions.org/questions/programming-9/how-can-make-makefile-detect-64-bit-os-679513/
+        LBITS := $(shell getconf LONG_BIT)
+        ifeq ($(LBITS),64)
+           # do 64 bit stuff here, like set some CFLAGS
+           LIBR    := ../../../lib/ooch/build/linux_i386-64/*.o
+           OBJDIR  := ../build/linux_i386-64
+           BINDIR  := ../../../bin/linux_i386-64
+        else
+           # do 32 bit stuff here
+           LIBR    := ../../../lib/ooch/build/linux_i386/*.o
+           OBJDIR  := ../build/linux_i386
+           BINDIR  := ../../../bin/linux_i386
+        endif
     endif
     ifeq ($(UNAME_S),Darwin)
         BINDIR  :=  ../../../bin/mac_i386
@@ -77,11 +90,15 @@ INC := $(SRC:.c=.h)
 
 OBJPROG = $(addprefix $(OBJDIR)/, $(OBJ))
 DEPPROG = $(addprefix $(OBJDIR)/, $(DEP))
-EXEPROG = $(BINDIR)/$(EXENAME)
+EXEPROG = $(BINDIR)/$(EXENAME)\
 
-all: $(EXEPROG)
+.PHONY: directories
+
+all: directories $(EXEPROG)
 
 $(OBJPROG): | $(OBJDIR)
+
+directories: $(OBJDIR)
 
 $(OBJDIR):
 	$(MKDIR) -p $(OBJDIR) 
