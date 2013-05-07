@@ -3,3 +3,4 @@
 
 2013-04-17 23:44 mst - Had to apt-get install ia32-libs to get Aptana adb program to run
 
+2013-05-07 13:14 mst - Building object oriented stdout stdin to allow for use in Android evented system
