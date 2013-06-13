@@ -1,5 +1,5 @@
 HelloWorld_oo.o ../build/linux_i386-64/HelloWorld_oo.d : HelloWorld_oo.c ../../../lib/ooch/ooc.h \
- /usr/include/stdio.h /usr/include/features.h \
+ /usr/include/stdio.h /usr/include/features.h /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/predefs.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -16,6 +16,7 @@ HelloWorld_oo.o ../build/linux_i386-64/HelloWorld_oo.d : HelloWorld_oo.c ../../.
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
@@ -23,6 +24,7 @@ HelloWorld_oo.o ../build/linux_i386-64/HelloWorld_oo.d : HelloWorld_oo.c ../../.
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  ../../../config/project_settings.h ../../../lib/ooch/types_oo.h \
  ../HelloWorld_oo.h ../../../lib/ooch/Executable_oo.h \
  ../../../lib/ooch/inc/Executable_oocv.h \

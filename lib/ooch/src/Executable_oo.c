@@ -56,6 +56,7 @@ void ClassExecutable_OverrideClassRun( int (*ptr_to_run_func)(ClassExecutable *)
 
 void initialize_main();  //Force overriding of this initialization function
 
+#ifndef ANDROID_VERSION
 int main()
 {
     initialize_main();
@@ -69,3 +70,19 @@ int main()
         return executable_class_method_ptrs->Run(executable_class_vars);
     }
 }
+#endif
+
+int alt_main()
+{
+    initialize_main();
+    if ( NULL == executable_class_method_ptrs->Run )
+    {
+        fprintf( stdout, "The descendent of Executable must override the class Run method.");
+        return EXIT_FAILURE;
+    }
+    else
+    {
+        return executable_class_method_ptrs->Run(executable_class_vars);
+    }
+}
+
