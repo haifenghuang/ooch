@@ -1,6 +1,5 @@
-Executable_oo.o ../../build/linux_i386-64/Executable_oo.d : Executable_oo.c /usr/include/stdio.h \
- /usr/include/features.h /usr/include/stdc-predef.h \
- /usr/include/x86_64-linux-gnu/bits/predefs.h \
+IOLinux_oo.o ../../build/linux_i386-64/IOLinux_oo.d : IOLinux_oo.c /usr/include/stdio.h /usr/include/features.h \
+ /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
@@ -25,6 +24,5 @@ Executable_oo.o ../../build/linux_i386-64/Executable_oo.d : Executable_oo.c /usr
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h ../../types_oo.h \
- ../../Executable_oo.h ../../inc/Executable_oocv.h \
- ../../inc/Executable_ooiv.h ../../inc/Executable_ooimp.h \
- ../../inc/Executable_oocmp.h
+ ../../IOLinux_oo.h ../../inc/IOLinux_oocv.h ../../inc/IOLinux_ooiv.h \
+ ../../inc/IOLinux_ooimp.h ../../inc/IOLinux_oocmp.h
