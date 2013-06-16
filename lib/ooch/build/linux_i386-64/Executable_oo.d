@@ -24,7 +24,8 @@ Executable_oo.o ../../build/linux_i386-64/Executable_oo.d : Executable_oo.c /usr
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h ../../types_oo.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ ../../../../config/project_settings.h ../../types_oo.h \
  ../../Executable_oo.h ../../inc/Executable_oocv.h \
  ../../inc/Executable_ooiv.h ../../inc/Executable_ooimp.h \
  ../../inc/Executable_oocmp.h

@@ -23,6 +23,9 @@ IOLinux_oo.o ../../build/linux_i386-64/IOLinux_oo.d : IOLinux_oo.c /usr/include/
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h ../../types_oo.h \
- ../../IOLinux_oo.h ../../inc/IOLinux_oocv.h ../../inc/IOLinux_ooiv.h \
- ../../inc/IOLinux_ooimp.h ../../inc/IOLinux_oocmp.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ ../../../../config/project_settings.h ../../types_oo.h \
+ ../../IOLinux_oo.h ../../IO_oo.h ../../inc/IO_oocv.h ../../inc/IO_ooiv.h \
+ ../../inc/IO_ooimp.h ../../inc/IO_oocmp.h ../../inc/IOLinux_oocv.h \
+ ../../inc/IOLinux_ooiv.h ../../inc/IOLinux_ooimp.h \
+ ../../inc/IOLinux_oocmp.h

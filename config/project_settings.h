@@ -12,4 +12,6 @@
 #define VERBOSE_DEBUG 1
 #define METHOD_DISPATCH_CHECK  // To check for un-assigned method prior to calling
 
+#define UNUSED(x) (void)(x)
+
 #endif // _PROJECT_SETTINGS__

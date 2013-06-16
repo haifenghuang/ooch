@@ -1,5 +1,4 @@
-IOHello_oo.o ../build/linux_i386-64/IOHello_oo.d : IOHello_oo.c ../../../config/project_settings.h \
- ../../../lib/ooch/ooc.h /usr/include/stdio.h /usr/include/features.h \
+IO_oo.o ../../build/linux_i386-64/IO_oo.d : IO_oo.c /usr/include/stdio.h /usr/include/features.h \
  /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -25,17 +24,6 @@ IOHello_oo.o ../build/linux_i386-64/IOHello_oo.d : IOHello_oo.c ../../../config/
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- ../../../lib/ooch/types_oo.h ../IOHello_oo.h \
- ../../../lib/ooch/Executable_oo.h \
- ../../../lib/ooch/inc/Executable_oocv.h \
- ../../../lib/ooch/inc/Executable_ooiv.h \
- ../../../lib/ooch/inc/Executable_ooimp.h \
- ../../../lib/ooch/inc/Executable_oocmp.h ../../../lib/ooch/IOLinux_oo.h \
- ../../../lib/ooch/IO_oo.h ../../../lib/ooch/inc/IO_oocv.h \
- ../../../lib/ooch/inc/IO_ooiv.h ../../../lib/ooch/inc/IO_ooimp.h \
- ../../../lib/ooch/inc/IO_oocmp.h ../../../lib/ooch/inc/IOLinux_oocv.h \
- ../../../lib/ooch/inc/IOLinux_ooiv.h \
- ../../../lib/ooch/inc/IOLinux_ooimp.h \
- ../../../lib/ooch/inc/IOLinux_oocmp.h ../src/IOHello_oocv.h \
- ../src/IOHello_ooiv.h ../src/IOHello_ooimp.h \
- ../../../lib/ooch/inc/Executable_oocmp.h ../src/IOHello_oocmp.h
+ ../../../../config/project_settings.h ../../types_oo.h ../../IO_oo.h \
+ ../../inc/IO_oocv.h ../../inc/IO_ooiv.h ../../inc/IO_ooimp.h \
+ ../../inc/IO_oocmp.h

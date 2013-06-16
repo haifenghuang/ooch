@@ -6,8 +6,8 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../../../config/project_settings.h"
 #include "../../types_oo.h"
-
 #include "../../Executable_oo.h"
 
 static ClassExecutable            *executable_class_vars;
@@ -16,16 +16,16 @@ static ClassMethodsExecutable     *executable_class_method_ptrs;
 
 static BOOL class_is_uninitialized = TRUE;
 
-void ClassExecutable_AssignInstanceMethodPointers(InstanceMethodsExecutable *instance_method_pointers)
-{
+//void ClassExecutable_AssignInstanceMethodPointers(InstanceMethodsExecutable *instance_method_pointers)
+//{
     //instance_method_pointers->Quack      = &ExecutableInstance_Quack;
     //instance_method_pointers->Sing       = &ExecutableInstance_Sing;  // overriding parent class Bird->Sing method
     //instance_method_pointers->Initialize = &ExecutableInstance_Initialize;
-}
+//}
 
-void ClassExecutable_AssignClassMethodPointers(ClassMethodsExecutable *class_method_pointers)
+void ClassExecutable_AssignClassMethodPointers(ClassMethodsExecutable *class_method_ptrs)
 {
-    executable_class_method_ptrs->Run      = NULL;  // force overriding
+    class_method_ptrs->Run      = NULL;  // force overriding
 }
 
 void ClassExecutable_Initialize()
@@ -39,8 +39,7 @@ void ClassExecutable_Initialize()
         executable_class_vars  = calloc( sizeof(InstanceExecutable), 1 );
 
         executable_instance_method_ptrs          = calloc( sizeof(InstanceMethodsExecutable), 1 );
-        //ClassBird_AssignInstanceMethodPointers( executable_instance_method_ptrs);
-        ClassExecutable_AssignInstanceMethodPointers( executable_instance_method_ptrs);
+        //ClassExecutable_AssignInstanceMethodPointers( executable_instance_method_ptrs);
 
         executable_class_method_ptrs             = calloc( sizeof(ClassMethodsExecutable), 1 );
         ClassExecutable_AssignClassMethodPointers(executable_class_method_ptrs);

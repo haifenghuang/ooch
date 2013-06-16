@@ -8,6 +8,8 @@
 #ifndef IOLINUX_OO_H_
 #define IOLINUX_OO_H_
 
+#include "IO_oo.h"   // Parent class
+
 typedef struct ClassIOLinux
 {
 
@@ -32,7 +34,8 @@ typedef struct InstanceMethodsIOLinux
 typedef struct ClassMethodsIOLinux
 {
 
-#include "inc/IOLinux_oocmp.h"
+#include "inc/IO_oocmp.h"       // Parent class IO
+#include "inc/IOLinux_oocmp.h"  // This class
 
 } ClassMethodsIOLinux;
 
