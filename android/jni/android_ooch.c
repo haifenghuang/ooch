@@ -1,5 +1,11 @@
 #include <jni.h>
 #include <string.h>
+
+
+#include <sys/types.h>
+#include <dirent.h>
+
+
 #include <android/log.h>
 
 #include "../../lib/ooch/ooc.h"
@@ -8,6 +14,8 @@
 #include "../../lib/ooch/types_oo.h"
 
 #include "android_ooch.h"
+
+#include "sqlite/sqlite3.h"
 
 #define DEBUG_TAG "NDK_AndroidNDK1SampleActivity"
 
@@ -32,6 +40,51 @@ void Java_com_example_androidndk1sample_AndroidNDK1SampleActivity_helloLog(JNIEn
 	const char * szLogThis = (*env)->GetStringUTFChars(env, logThis, &isCopy);
 	__android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "NDK:LC: [%s]", szLogThis);
 	(*env)->ReleaseStringUTFChars(env, logThis, szLogThis);
+
+	jclass clazz = (*env)->FindClass(env,"com/example/androidndk1sample/AndroidNDK1SampleActivity");
+    if (clazz == 0) {
+        logit("FindClass error");
+        return;
+    }
+
+    jmethodID javamethod = (*env)->GetMethodID(env, clazz, "test_call", "()V");
+    if (javamethod == 0) {
+        logit("GetMethodID error");
+        return;
+    }
+
+    jmethodID java_print_string = (*env)->GetMethodID(env, clazz, "print_string", "(Ljava/lang/String;)V");
+    if (javamethod == 0) {
+        logit("GetMethodID error");
+        return;
+    }
+
+    char tblz[6] = "BLIZZ";
+
+    jstring test_str;
+    test_str = (*env)->NewStringUTF(env, tblz);
+
+    //(*env)->CallVoidMethod(env, this, javamethod);
+
+    (*env)->CallVoidMethod(env, this, java_print_string, test_str);
+
+
+    DIR *dp;
+    struct dirent *ep;
+    dp = opendir ("/sdcard");
+
+    if (dp != NULL)
+    {
+      while (ep = readdir (dp))
+      {
+  	    test_str = (*env)->NewStringUTF(env, ep->d_name);
+  	    (*env)->CallVoidMethod(env, this, java_print_string, test_str);
+      }
+
+      (void) closedir (dp);
+    }
+
+
 	logit("Extra Log Message");
 }
 

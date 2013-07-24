@@ -36,7 +36,7 @@ else
     MV      :=  mv
     MKDIR   :=  mkdir -p
 
-    OBJDIR = ../build
+    OBJDIR = ../../build
 	
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
@@ -45,10 +45,10 @@ else
         LBITS := $(shell getconf LONG_BIT)
         ifeq ($(LBITS),64)
            # do 64 bit stuff here, like set some CFLAGS
-           OBJDIR = ../build/linux_i386-64
+           OBJDIR = ../../build/linux_i386-64
         else
            # do 32 bit stuff here
-           OBJDIR = ../build/linux_i386
+           OBJDIR = ../../build/linux_i386
         endif
     endif
     ifeq ($(UNAME_S),Darwin)
@@ -83,7 +83,7 @@ $(OBJDIR):
 $(DEPPROG): $(SRC)
 	# 
 	# ========= START $< TO $@ =========
-	$(CC) -M $(CPPFLAGS) $< > $@.$$$$;                      \
+	$(CC) -ggdb -M $(CPPFLAGS) $< > $@.$$$$;                      \
     sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@;     \
     rm -f $@.$$$$
 	# ========= END $< TO $@ =========
@@ -91,7 +91,7 @@ $(DEPPROG): $(SRC)
 $(OBJPROG): $(SRC) $(DEPPROG)
 	# 
 	# ========= START $< TO $@ =========
-	$(CC) $(CCFLAGS) -c $< -o $@ -I. 
+	$(CC) -ggdb $(CCFLAGS) -c $< -o $@ -I. 
 	# ========= END $< TO $@ =========
 	# 
 

@@ -1,4 +1,4 @@
-IOLinux_oo.o ../../build/linux_i386-64/IOLinux_oo.d : IOLinux_oo.c /usr/include/stdio.h /usr/include/features.h \
+Object_oo.o ../../build/linux_i386-64/Object_oo.d : Object_oo.c /usr/include/stdio.h /usr/include/features.h \
  /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -24,8 +24,6 @@ IOLinux_oo.o ../../build/linux_i386-64/IOLinux_oo.d : IOLinux_oo.c /usr/include/
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- ../../../../config/project_settings.h ../../types_oo.h \
- ../../IOLinux_oo.h ../../IO_oo.h ../../inc/IO_oocv.h ../../inc/IO_ooiv.h \
- ../../inc/IO_ooimp.h ../../inc/IO_oocmp.h ../../inc/IOLinux_oocv.h \
- ../../inc/IOLinux_ooiv.h ../../inc/IOLinux_ooimp.h \
- ../../inc/IOLinux_oocmp.h
+ ../../../../config/project_settings.h ../../types_oo.h ../../Object_oo.h \
+ ../../inc/Object_oocv.h ../../inc/Object_ooiv.h ../../inc/Object_ooimp.h \
+ ../../inc/Object_oocmp.h
