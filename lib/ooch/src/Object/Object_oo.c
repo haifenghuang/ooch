@@ -6,14 +6,15 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../../../../config/project_settings.h"
 #include "../../types_oo.h"
 #include "../../Object_oo.h"
 
 static        ClassObject            *object_class_vars;
 static        InstanceMethodsObject  *object_instance_method_ptrs;
-//static ClassMethodsObject     *object_class_method_ptrs;
-static struct ClassMethodsObject      object_class_method_ptrs = { &ClassObject_New };
+static        ClassMethodsObject     *object_class_method_ptrs;
+//static struct ClassMethodsObject      object_class_method_ptrs = { &ClassObject_New };
 
 InstanceObject* ClassObject_New()  // new initializes object
 {
@@ -25,21 +26,29 @@ InstanceObject* Object()  // new initializes object
 	return NULL;
 }
 
-//static BOOL class_is_uninitialized = TRUE;
+void            ClassObject_InheritInstanceMethods(void* dest)
+{
+	memcpy( dest, object_instance_method_ptrs, sizeof(object_instance_method_ptrs));
+	return;
+}
 
-//void ClassObject_AssignInstanceMethodPointers(InstanceMethodsObject *instance_method_pointers)
-//{
+
+static BOOL class_is_uninitialized = TRUE;
+
+void ClassObject_AssignInstanceMethodPointers(InstanceMethodsObject *instance_method_pointers)
+{
     //instance_method_pointers->Quack      = &ObjectInstance_Quack;
     //instance_method_pointers->Sing       = &ObjectInstance_Sing;  // overriding parent class Bird->Sing method
     //instance_method_pointers->Initialize = &ObjectInstance_Initialize;
-//}
+}
 
-//void ClassObject_AssignClassMethodPointers(ClassMethodsObject *class_method_ptrs)
-//{
-//    class_method_ptrs->Run      = NULL;  // force overriding
-//}
+void ClassObject_AssignClassMethodPointers(ClassMethodsObject *class_method_ptrs)
+{
+    class_method_ptrs->New                    = &ClassObject_New;
+    class_method_ptrs->InheritInstanceMethods = &ClassObject_InheritInstanceMethods;
+}
 
-/*
+
 void ClassObject_Initialize()
 {
     if ( class_is_uninitialized )
@@ -59,7 +68,7 @@ void ClassObject_Initialize()
     }
 
 }
-*/
+
 
 //void ClassObject_OverrideClassRun( int (*ptr_to_run_func)(ClassObject *) )
 //{

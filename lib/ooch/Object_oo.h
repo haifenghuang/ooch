@@ -40,6 +40,10 @@ typedef struct ClassMethodsObject
 //void ClassObject_OverrideClassRun( int (*ptr_to_run_func)(ClassObject *) );
 
 InstanceObject* ClassObject_New();  // new initializes object
+void            ClassObject_InheritInstanceMethods(void* dest);
 InstanceObject* Object();           // allocates only
+
+typedef InstanceObject* (*TObjectNew)();
+typedef void (*TObjectInheritInstanceMethods)(void* dest);
 
 #endif /* OBJECT_OO_H_ */

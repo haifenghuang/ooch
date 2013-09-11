@@ -13,6 +13,14 @@
 #include <stdlib.h>
 #endif
 
+typedef struct PointerToInstance
+{
+	void* ClassMethods;
+	void* InstanceMethods;
+	void* ClassVars;
+	void* InstanceVars;
+} PInst;
+
 //#define initialize_main() you_can_ignore_this_warning_about_initialize_main()
 
 int main();

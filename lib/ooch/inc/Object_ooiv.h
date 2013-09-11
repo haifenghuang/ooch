@@ -1,0 +1,1 @@
+void *CLASS_PTR;
